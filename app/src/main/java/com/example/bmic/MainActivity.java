@@ -4,18 +4,38 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-
+/**
+ * Activity for loading layout resources
+ * @author Paulo Ramirez Leon
+*
+ * */
+Spinner spinner;
+    IMC categoria;
+    EditText editText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        myButtonListenerMethod();
+Inicializar();
+btnCalcularIMC();
+
     }
+
+    /**
+     * Metodo que se llama para ejecutar el metodo por boton
+     */
+    public void btnCalcularIMC(){
+        Button btnCalcularIMCResult = findViewById(R.id.button);
+        btnCalcularIMCResult.setOnClickListener(new BtnCalcularIhMCEscuchador());
+    }
+
     public void myButtonListenerMethod() {
         Button button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -51,4 +71,160 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    private Double calcularIMC(Double pesoDbl, Double estaturaDbl){
+        Double imc = pesoDbl / (estaturaDbl * estaturaDbl);
+        return imc;
+    }
+    /**
+    * Metodo que calcula la categoria a partir del IMC
+    *
+    * @param imc Indice de Masa Corporal en formato Double
+     *El return categoria calculada en formato de cadena de texto (String)
+    * */
+    private  String getBMICategoria(Double imc){
+        String sp1 = spinner.getSelectedItem().toString();
+        String tntEdad = editText.getText().toString();
+        int Edad = Integer.parseInt(tntEdad);
+if (sp1.equals("Hombre")){
+    if (Edad >= 1 && Edad < 5){
+        if (imc < 5.7){
+            categoria = IMC.VERY_SEVERELY_UNDER_WEIGHT;
+        }else if (imc < 6.0){
+            categoria = IMC.SEVERELY_UNDER_WEIGHT;
+        }else if (imc < 6.2){
+            categoria = IMC.UNDER_WEIGHT;
+        }else if (imc < 7.0 ){
+            categoria = IMC.NORMAL;
+        }else if (imc < 7.8 ){
+            categoria = IMC.OVER_wEIGHT;
+        }else if (imc < 8.7 ){
+            categoria = IMC.MODERATELY_OBESE;
+        }else if (imc < 8.9 ) {
+            categoria = IMC.SEVERELY_OBESE;
+        }else {
+            categoria = IMC.VERY_SEVERELY_OBESE;
+        }
+
+    }else if (Edad >= 5 && Edad <= 11){
+        if (imc < 5.7){
+            categoria = IMC.VERY_SEVERELY_UNDER_WEIGHT;
+        }else if (imc < 6.0){
+            categoria = IMC.SEVERELY_UNDER_WEIGHT;
+        }else if (imc < 6.2){
+            categoria = IMC.UNDER_WEIGHT;
+        }else if (imc < 7.0 ){
+            categoria = IMC.NORMAL;
+        }else if (imc < 7.8 ){
+            categoria = IMC.OVER_wEIGHT;
+        }else if (imc < 8.7 ){
+            categoria = IMC.MODERATELY_OBESE;
+        }else if (imc < 8.9 ) {
+            categoria = IMC.SEVERELY_OBESE;
+        }else {
+            categoria = IMC.VERY_SEVERELY_OBESE;
+        }
+    }else if (Edad >= 12 && Edad <= 19){
+        if (imc < 5.7){
+            categoria = IMC.VERY_SEVERELY_UNDER_WEIGHT;
+        }else if (imc < 6.0){
+            categoria = IMC.SEVERELY_UNDER_WEIGHT;
+        }else if (imc < 6.2){
+            categoria = IMC.UNDER_WEIGHT;
+        }else if (imc < 7.0 ){
+            categoria = IMC.NORMAL;
+        }else if (imc < 7.8 ){
+            categoria = IMC.OVER_wEIGHT;
+        }else if (imc < 8.7 ){
+            categoria = IMC.MODERATELY_OBESE;
+        }else if (imc < 8.9 ) {
+            categoria = IMC.SEVERELY_OBESE;
+        }else {
+            categoria = IMC.VERY_SEVERELY_OBESE;
+        }
+    }else if (Edad >= 20 && Edad <= 59){
+        if (imc < 5.7){
+            categoria = IMC.VERY_SEVERELY_UNDER_WEIGHT;
+        }else if (imc < 6.0){
+            categoria = IMC.SEVERELY_UNDER_WEIGHT;
+        }else if (imc < 6.2){
+            categoria = IMC.UNDER_WEIGHT;
+        }else if (imc < 7.0 ){
+            categoria = IMC.NORMAL;
+        }else if (imc < 7.8 ){
+            categoria = IMC.OVER_wEIGHT;
+        }else if (imc < 8.7 ){
+            categoria = IMC.MODERATELY_OBESE;
+        }else if (imc < 8.9 ) {
+            categoria = IMC.SEVERELY_OBESE;
+        }else {
+            categoria = IMC.VERY_SEVERELY_OBESE;
+        }
+    }else if (Edad >= 60 && Edad >= 70){
+        if (imc < 5.7){
+            categoria = IMC.VERY_SEVERELY_UNDER_WEIGHT;
+        }else if (imc < 6.0){
+            categoria = IMC.SEVERELY_UNDER_WEIGHT;
+        }else if (imc < 6.2){
+            categoria = IMC.UNDER_WEIGHT;
+        }else if (imc < 7.0 ){
+            categoria = IMC.NORMAL;
+        }else if (imc < 7.8 ){
+            categoria = IMC.OVER_wEIGHT;
+        }else if (imc < 8.7 ){
+            categoria = IMC.MODERATELY_OBESE;
+        }else if (imc < 8.9 ) {
+            categoria = IMC.SEVERELY_OBESE;
+        }else {
+            categoria = IMC.VERY_SEVERELY_OBESE;
+        }
+    }
+
+
+}else {
+    if (Edad >= 1 && Edad < 5){
+
+    }else if (Edad >= 5 && Edad <= 11){
+
+    }else if (Edad >= 12 && Edad <= 19){
+
+    }else if (Edad >= 20 && Edad <= 59){
+
+    }else if (Edad >= 60 && Edad >= 70){
+
+    }
+
+}
+
+        return  IMCEnum.getValue(categoria);
+    }
+    public void Inicializar(){
+         spinner = (Spinner) findViewById(R.id.spinner2);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.opciones, android.R.layout.simple_spinner_item);
+        spinner.setAdapter(adapter);
+         editText = (EditText) findViewById(R.id.edEdad);
+    }
+
+
+    class  BtnCalcularIhMCEscuchador implements View.OnClickListener {
+
+        @Override
+        public void onClick(View v) {
+            EditText txtEstatura = findViewById(R.id.heightInput);
+            EditText txtPeso = findViewById(R.id.weightInput);
+            TextView BMIResultado = findViewById(R.id.bmiResult);
+            TextView BMICategoria = findViewById(R.id.BMICategory);
+
+            String estaturaStr = txtEstatura.getText().toString();
+            String pesoStr = txtPeso.getText().toString();
+            Double estaturaDbl = Double.parseDouble(estaturaStr);
+            Double pesoDbl = Double.parseDouble(pesoStr);
+            Double imc = calcularIMC(pesoDbl, estaturaDbl);
+
+            BMIResultado.setText(Double.toString(imc));
+            BMICategoria.setText(getBMICategoria(imc));
+        }
+    }
+
+
 }
